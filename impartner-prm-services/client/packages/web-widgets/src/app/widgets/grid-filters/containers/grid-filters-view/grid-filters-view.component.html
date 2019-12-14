@@ -1,0 +1,5 @@
+<w-impartner-show-tabs [tabs]="gridFiltersConfig.tabs" (tabSelected)="onTabSelected($event)"></w-impartner-show-tabs>
+<w-impartner-prm-object-grid-view
+  *ngIf="selectedTab"
+  [widgetConfig]="selectedTab.gridConfig | json"
+></w-impartner-prm-object-grid-view>

@@ -1,0 +1,224 @@
+// ---
+// Impartner application colors.
+// https://thiapps.com/confluence/display/PROD/Colors
+
+$scheme: (
+	ardent-yellow: (
+		default: #ffb618,
+		50: #fff8e2,
+		100: #ffedb5,
+		200: #ffe186,
+		300: #ffd756,
+		400: #ffcc31,
+		500: #ffc41f,
+		600: #ffb618,
+		700: #ffa314,
+		800: #fe9313,
+		900: #fe7410
+	),
+	firm-gray: (
+		default: #1b2123,
+		50: #f4fbfe,
+		100: #eff6f9,
+		200: #e8eff1,
+		300: #dae0e3,
+		400: #b7bdc0,
+		500: #989ea1,
+		600: #6f7577,
+		700: #5b6163,
+		800: #3d4244,
+		900: #1b2123
+	),
+	mono: (
+		default: #fff,
+		5: #f2f2f2,
+		10: #e6e6e6,
+		15: #d9d9d9,
+		20: #ccc,
+		25: #bfbfbf,
+		30: #b3b3b3,
+		35: #a6a6a6,
+		40: #999,
+		45: #8c8c8c,
+		50: #808080,
+		55: #737373,
+		60: #666,
+		65: #595959,
+		70: #4d4d4d,
+		75: #404040,
+		80: #333,
+		85: #262626,
+		90: #1a1a1a,
+		95: #0d0d0d,
+		100: #000
+	),
+	bondi-blue: (
+		default: #42b8cc,
+		50: #e1f6f9,
+		100: #b5e8f0,
+		200: #88dbe7,
+		300: #60ccdb,
+		400: #4ac2d3,
+		500: #42b8cc,
+		600: #3da7b8,
+		700: #3893a0,
+		800: #338088,
+		900: #2a5b5f
+	),
+	baron-red: (
+		default: #a12125,
+		50: #fbeaee,
+		100: #f6cbd1,
+		200: #e1979b,
+		300: #d37075,
+		400: #da5155,
+		500: #df403e,
+		600: #cf383c,
+		700: #be2f35,
+		800: #b1292e,
+		900: #a12125
+	),
+	shell-white: (
+		default: #f4f1ec,
+		50: #f4f1ec,
+		100: #e3dbd0,
+		200: #cfc2b5,
+		300: #b9a995,
+		400: #a8937b,
+		500: #967f62,
+		600: #8a755a,
+		700: #7a664f,
+		800: #6c5845,
+		900: #5c493a
+	),
+	sturdy-yellow: (
+		default: #f3d03c,
+		50: #fefce7,
+		100: #fcf7c4,
+		200: #faf09e,
+		300: #f8ec78,
+		400: #f4e75b,
+		500: #f2e240,
+		600: #f3d03c,
+		700: #f0ba33,
+		800: #eda32c,
+		900: #e87c1d
+	),
+
+	reinforced-green: (
+		default: #aed361,
+		50: #f4f9e8,
+		100: #e3efc7,
+		200: #d1e5a4,
+		300: #bedb7f,
+		400: #aed361,
+		500: #a0cb43,
+		600: #90bb3c,
+		700: #7ba730,
+		800: #669328,
+		900: #437117
+	),
+	enduring-green: (
+		default: #71c055,
+		50: #eef8ea,
+		100: #d4eccb,
+		200: #b7e0a9,
+		300: #9cd388,
+		400: #86ca6e,
+		500: #71c055,
+		600: #65b04d,
+		700: #519c42,
+		800: #3f8839,
+		900: #1e6527
+	),
+	able-aqua: (
+		default: #70c5a4,
+		50: #e4f5ef,
+		100: #bee6d7,
+		200: #95d5be,
+		300: #70c5a4,
+		400: #59b692,
+		500: #4da981,
+		600: #479b77,
+		700: #3f8a68,
+		800: #377a5b,
+		900: #2c5d41
+	),
+	capable-blue: (
+		default: #417bbe,
+		50: #e5f2fa,
+		100: #c0def5,
+		200: #9cccef,
+		300: #7ab8e7,
+		400: #63a9e2,
+		500: #529bde,
+		600: #4a8dd0,
+		700: #417bbe,
+		800: #3a6bac,
+		900: #2d4e8c
+	),
+	secure-blue: (
+		default: #2b46b3,
+		50: #e8eaf8,
+		100: #c4c9ef,
+		200: #9da7e4,
+		300: #7485d9,
+		400: #5469d1,
+		500: #314ec9,
+		600: #2b46be,
+		700: #203cb2,
+		800: #1430a5,
+		900: #001d93
+	),
+	heavy-purple: (
+		default: #6136be,
+		50: #ede7f7,
+		100: #d0c3eb,
+		200: #b19bde,
+		300: #9273d2,
+		400: #7a54c7,
+		500: #6136be,
+		600: #5730b8,
+		700: #4929ae,
+		800: #3c22a7,
+		900: #21179b
+	),
+	mighty-violet: (
+		default: #d33074,
+		50: #fae5ef,
+		100: #f3bed7,
+		200: #ee94bd,
+		300: #ea6ba3,
+		400: #e54d8d,
+		500: #e43379,
+		600: #d33074,
+		700: #bc2c6d,
+		800: #a62968,
+		900: #80245b
+	),
+	athletic-red: (
+		default: #e35323,
+		50: #faeae8,
+		100: #fdcdbe,
+		200: #fdae95,
+		300: #fc8f6b,
+		400: #fb774b,
+		500: #fc602c,
+		600: #f05b28,
+		700: #e35323,
+		800: #d44c20,
+		900: #bb4018
+	)
+);
+
+///
+/// @param $hue The color
+/// @param $shade - optional, defaults to default shade.
+///
+/// @example
+/// 	color:setColor(athletic-red);
+///		background: setColor(athletic-red, 600);
+///
+@function setColor($hue, $shade: default) {
+	@return map-get(map-get($scheme, $hue), $shade);
+}

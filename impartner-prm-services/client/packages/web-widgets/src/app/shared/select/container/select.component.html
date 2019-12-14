@@ -1,0 +1,11 @@
+<div class="select-container">
+  <select
+    #selectElement
+    (change)="changeListener($event)"
+    [value]="defaultValue"
+    [disabled]="disabled"
+    class="select-component"
+  >
+    <option *ngFor="let item of itemsList" [value]="item[bindValue]">{{ item[bindLabel] }}</option>
+  </select>
+</div>

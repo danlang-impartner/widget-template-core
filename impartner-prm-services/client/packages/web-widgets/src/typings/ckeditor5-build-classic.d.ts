@@ -1,0 +1,1 @@
+declare module '@impartner/ckeditor5-build-classic';

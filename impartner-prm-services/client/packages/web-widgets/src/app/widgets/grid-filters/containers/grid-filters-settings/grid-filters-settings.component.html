@@ -1,0 +1,42 @@
+<div class="grid-filters-settings" *ngIf="tabConfig?.gridConfig">
+  <w-impartner-tabs-settings
+    [tabs]="tabs"
+    [selectedTabIndex]="tabConfig.id"
+    (tabSelected)="updateSelectedTab($event)"
+    (tabsConfigChanged)="udpateTabsConfig($event)"
+  ></w-impartner-tabs-settings>
+  <w-impartner-define-datasource
+    [businessObjectName]="tabConfig.gridConfig.businessObjectName"
+    (businessObjectChangeEvent)="onBusinessObjectChanged($event)"
+    (tabSelectedEvent)="onTabChanged($event)"
+  ></w-impartner-define-datasource>
+  <hr class="separation-line" />
+  <w-impartner-prm-object-grid-settings
+    class="hide-component"
+    [ngClass]="{ show: tabConfig && currentTabSelected === FilterTab.Datasource }"
+    [id]="tabConfig?.id ? tabConfig.id : ''"
+  ></w-impartner-prm-object-grid-settings>
+  <div class="filter-rows-panel" *ngIf="tabConfig && currentTabSelected === FilterTab.Filter">
+    <div
+      class="filter-description"
+      [translate]="'gridFilterSettings.filterDescription'"
+      [translateParams]="{
+        businessObjectName: prmObjectGridInstance.widgetConfig.businessObjectName
+      }"
+    ></div>
+    <w-impartner-filter-rows
+      class="filter-rows-component"
+      *ngFor="let rowFilter of rowFilters; index as i"
+      title="Filter - {{ i + 1 }}"
+      [rowFilter]="rowFilter"
+      [fieldDefinitions]="prmObjectGridInstance.columnDefinition"
+      (filterChanged)="updateFilters($event)"
+    ></w-impartner-filter-rows>
+    <button
+      type="button"
+      class="add-filter"
+      (click)="addFilter($event)"
+      [translate]="'gridFilterSettings.anotherFilter'"
+    ></button>
+  </div>
+</div>

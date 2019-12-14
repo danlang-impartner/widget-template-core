@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>@impartner/web-widgets - HTML Editor</title>
+    <script src="knockout-3.5.0.js"></script>
+    <script>
+      window['appConfig'] = {
+        resourceUrl: './'
+      };
+    </script>
+    <script type="application/javascript" src="dist/package/vendor.js"></script>
+    <script type="application/javascript" src="dist/package/web-widgets.min.js"></script>
+    <script>
+      (() => {
+        const widgetRuntime = window['com.impartner.widget.runtime'];
+        // TODO: (and IMPORTANT!) you should wait until the promise returned by
+        // lazyLoaded is resolved to be able to insert the tag in the DOM, otherwise the custom tag
+        // of the specific widget won't work!
+        widgetRuntime.manager.loadComponent(
+          {
+            type: 'ImpartnerSpacer'
+          },
+          'Edit'
+        );
+        widgetRuntime.manager.loadComponent(
+          {
+            type: 'ImpartnerSpacer'
+          },
+          'View'
+        );
+        widgetRuntime.manager.loadComponent(
+          {
+            type: 'ImpartnerSpacer'
+          },
+          'SettingsPopover'
+        );
+      })();
+      document.addEventListener('DOMContentLoaded', () => {
+        (() => {
+          const widgetRuntime = window['com.impartner.widget.runtime'];
+
+          function CMSTestModel() {
+            this.isInEditMode$ = ko.observable('true');
+            this.widgetId$ = ko.observable(1);
+            this.widgetConfig$ = ko.observable({
+              id: 1,
+              spacingSize: 2.4
+            });
+            this.widgetConfigJson$ = ko.computed(() => JSON.stringify(this.widgetConfig$()));
+            this.totalEditors$ = ko.observableArray([1]);
+
+          }
+
+          ko.applyBindings(new CMSTestModel());
+        })();
+      });
+    </script>
+    <style>
+      html {
+        font-family: 'Open Sans';
+        font-size: 0.625rem;
+      }
+      w-impartner-spacer-view, w-impartner-spacer-edit {
+        margin-bottom: 1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <h3>w-impartner-spacer</h3>
+
+    <input
+      type="checkbox"
+      name="edit-mode"
+      id="edit-mode"
+      value="true"
+      data-bind="{ checked: isInEditMode$ }"
+    />
+    <label for="edit-mode">Edit Mode?</label>
+
+    <!-- ko foreach: { data: totalEditors$, as: 'numberEditor', noChildContext: true } -->
+
+    <!-- ko if: isInEditMode$() -->
+    <w-impartner-spacer-edit data-bind="{ attr: { 'id': widgetId$, 'widget-config': widgetConfigJson$ }  }"></w-impartner-spacer-edit>
+    <w-impartner-spacer-settings data-bind="{ attr: { 'id': widgetId$, 'widget-config': widgetConfigJson$ }  }"></w-impartner-spacer-settings>
+    <!-- /ko -->
+
+    <!-- ko if: !isInEditMode$() -->
+    <w-impartner-spacer-view data-bind="{ attr: { 'id': widgetId$, 'widget-config': widgetConfigJson$ }  }"></w-impartner-spacer-view>
+    <!-- /ko -->
+
+    <!-- /ko -->
+  </body>
+</html>

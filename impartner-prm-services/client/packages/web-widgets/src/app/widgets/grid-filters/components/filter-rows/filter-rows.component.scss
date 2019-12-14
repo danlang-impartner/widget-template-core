@@ -1,0 +1,101 @@
+@import '~@impartner/config-utils/scss/palette';
+
+$filter-link-color: setColor(bondi-blue, 500);
+
+.filter-configuration {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 1.4rem;
+
+  .title {
+    flex: auto;
+    background-color: lighten(setColor(firm-gray, 300), 6%);
+    font-size: 1.6rem;
+    line-height: 4rem;
+    padding-left: 0.5rem;
+  }
+
+  .field-list {
+    flex: 1 0 100%;
+    display: flex;
+
+    .field-dropdown {
+      flex: 1 1 100%;
+      height: auto;
+      font-size: 1.4rem;
+      padding: 0.8rem 0rem 1rem 1.1rem;
+      margin: 1rem 0.8rem 0.6rem 0.8rem;
+      border: 0.1rem solid lighten(setColor(firm-gray, 500), 23%);
+      color: setColor(firm-gray);
+    }
+  }
+
+  .filter-row {
+    flex: 1 0 100%;
+    display: flex;
+
+    .operators-list {
+      flex: auto;
+      width: 35%;
+    }
+
+    .boolean-connector {
+      flex: auto;
+      width: 35%;
+      height: 4.4rem;
+      display: flex;
+
+      .left-arrow {
+        flex: auto;
+        width: 17%;
+        height: 1.55rem;
+        border-left: 0.3rem dotted setColor(firm-gray, 400);
+        border-bottom: 0.3rem dotted setColor(firm-gray, 400);
+        margin: 0.5rem 0 1.95rem 1.35rem;
+      }
+
+      .boolean-operator {
+        flex: auto;
+        width: 13%;
+        height: 1.9rem;
+        font-weight: bold;
+        font-style: italic;
+        color: setColor(firm-gray, 500);
+        margin-left: 0.3rem;
+        margin-top: 1rem;
+        margin-right: 0.3rem;
+      }
+
+      .right-arrow {
+        flex: auto;
+        width: 70%;
+        height: 1.55rem;
+        border-bottom: 0.3rem dotted setColor(firm-gray, 400);
+        margin-top: 0.6rem;
+        margin-left: 0.8rem;
+        margin-right: 0.8rem;
+      }
+    }
+
+    .input-filter {
+      flex: auto;
+      width: 50%;
+      border-radius: 0.3rem;
+      border: 0.1rem solid lighten(setColor(firm-gray, 500), 23%);
+      padding: 0.3rem 0.3rem 0.3rem 1.1rem;
+      margin-right: 0.8rem;
+      height: 4.2rem;
+      margin-bottom: 0.4rem;
+    }
+  }
+
+  .another-value-link {
+    align-self: flex-end;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: $filter-link-color;
+    display: block;
+    margin: 0.8rem 0rem 0.8rem 36%;
+  }
+}

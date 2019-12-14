@@ -1,0 +1,50 @@
+{
+  "name": "@impartner/widget-runtime",
+  "version": "1.0.2-dev.2",
+  "description": "Impartner Widgets runtime package",
+  "main": "./dist/widget-runtime.umd.js",
+  "typings": "./dist/widget-runtime.d.ts",
+  "files": [
+    "/dist",
+    "README.md"
+  ],
+  "author": "Impartner, Inc",
+  "license": "UNLICENSED",
+  "scripts": {
+    "package": "webpack --mode=production --verbose",
+    "package-dev": "webpack --mode=development",
+    "generate-dts": "dts-bundle-generator -o dist/widget-runtime.d.ts ./src/main.ts",
+    "watch": "webpack --watch --progress --mode=development",
+    "test": "karma start --verbose",
+    "lint": "tslint -c tslint.json 'src/**/*.ts'"
+  },
+  "devDependencies": {
+    "@types/jasmine": "3.3.9",
+    "@types/webpack-env": "1.13.7",
+    "clean-webpack-plugin": "1.0.1",
+    "ts-declaration-webpack-plugin": "1.2.0",
+    "jasmine": "3.3.1",
+    "karma-chrome-launcher": "2.2.0",
+    "karma-mocha-reporter": "2.2.5",
+    "karma-sourcemap-loader": "0.3.7",
+    "prettier": "1.16.4",
+    "puppeteer": "1.12.2",
+    "reflect-metadata": "0.1.13",
+    "ts-loader": "5.3.3",
+    "ts-node": "8.0.2",
+    "tslint": "5.12.1",
+    "tslint-config-prettier": "1.18.0",
+    "tslint-eslint-rules": "5.4.0",
+    "tslint-lines-between-class-members": "1.3.1",
+    "typescript": "3.3.3",
+    "webpack": "4.29.3",
+    "webpack-cli": "3.2.3",
+    "webpack-karma-jasmine": "3.0.4"
+  },
+  "publishConfig": {
+    "registry": "http://repository.treehousei.net/repository/npm-hosted/"
+  },
+  "dependencies": {
+    "@impartner/config-utils": "1.0.0"
+  }
+}

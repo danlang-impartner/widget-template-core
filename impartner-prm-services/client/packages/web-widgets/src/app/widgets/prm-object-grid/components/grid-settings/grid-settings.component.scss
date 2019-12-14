@@ -1,0 +1,190 @@
+@import '~@impartner/config-utils/scss/palette';
+
+$grid-base-font-size: 1.5rem;
+
+.grid-settings-component {
+  width: 100%;
+  display: block;
+
+  background-color: setColor(mono, default);
+  color: setColor(firm-gray, 800);
+  max-width: 100%;
+
+  .columns-info {
+    font-size: 1.1rem;
+    padding: 0.97rem 0.9rem 0.3rem 0.9rem;
+    display: flex;
+
+    .description {
+      flex: 3;
+      font-size: 1.3rem;
+      color: darken(setColor(firm-gray, 800), 9%);
+    }
+
+    .selected-columns {
+      flex: 2;
+      text-align: right;
+      font-weight: 600;
+    }
+
+    .total-columns {
+      flex: 3;
+      text-align: right;
+      font-weight: 600;
+    }
+  }
+
+  .w-column-list {
+    list-style-type: none;
+    padding-left: 0.5rem;
+    display: block;
+    height: 42vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    width: 97%;
+    margin-top: 0;
+
+    .w-column-item {
+      line-height: 1.25rem;
+      cursor: move;
+      font-size: 1.2rem;
+      color: setColor(firm-gray, 800);
+
+      input[type='checkbox'] {
+        -webkit-appearance: none;
+        background-color: setColor(firm-gray, 300);
+        border: 0.11rem solid setColor(firm-gray, 700);
+        box-shadow: 0 0.1em 0.2em rgba(0, 0, 0, 0.05),
+          inset 0em -1.5em 1em -1.2em rgba(0, 0, 0, 0.05);
+        padding: 0.7rem;
+        border-radius: 0.3rem;
+        display: inline-block;
+        position: relative;
+        top: 0.75rem;
+        min-width: 1.8rem;
+        min-height: 1.8rem;
+        margin-right: 0.8rem;
+
+        &:active,
+        &:checked:active {
+          box-shadow: 0 0.1em 0.2em setColor(firm-gray, 800),
+            inset 0em 0.1em 0.3em setColor(firm-gray, 900);
+        }
+
+        &:checked {
+          background-color: setColor(bondi-blue);
+          box-shadow: 0 0.1em 0.2em setColor(firm-gray, 800),
+            inset 0em -1.5em 1em -1.2em setColor(firm-gray, 900),
+            inset 1.5em 1em -1.2em setColor(firm-gray, 800);
+        }
+
+        &:checked:after {
+          content: '\2713';
+          font-size: 1.6rem;
+          position: absolute;
+          top: -0.4rem;
+          left: 0.2rem;
+          font-weight: 600;
+          color: setColor(mono, 100);
+        }
+      }
+
+      .move-indicator {
+        display: none;
+        float: right;
+        position: relative;
+        right: 0.2rem;
+        width: 1.6rem;
+        height: 1.6rem;
+        top: 0.6rem;
+
+        .rectangle {
+          width: 1.9rem;
+          height: 0.05rem;
+          border-top: solid 0.2em setColor(firm-gray, 800);
+          position: absolute;
+          top: 0.6rem;
+          &:nth-child(2) {
+            top: 1rem;
+          }
+        }
+      }
+
+      &:hover .move-indicator,
+      &.sortable-chosen .move-indicator {
+        display: inline-block;
+      }
+    }
+  }
+
+  .w-pagination {
+    .title {
+      width: 101%;
+      background-color: setColor(firm-gray);
+      color: setColor(firm-gray, 200);
+      font-size: 1.4rem;
+      font-weight: 500;
+      padding: 1.5rem 0rem 0.5rem 0rem;
+    }
+
+    .description {
+      margin: 0.3rem 0.5rem;
+      color: setColor(firm-gray, 700);
+      font-size: 1.1rem;
+      font-weight: 600;
+      display: flex;
+      position: relative;
+    }
+    .description .description-text {
+      flex: 9;
+    }
+
+    .description .add-page-option {
+      flex: 1;
+      width: 2.4rem;
+      height: 2.4rem;
+      text-align: right;
+    }
+
+    .description .add-page-option .icon {
+      width: 2.4rem;
+      height: 2.4rem;
+      cursor: pointer;
+    }
+
+    .description .add-page-option .add-increment-box {
+      position: absolute;
+      right: -0.5rem;
+      background-color: setColor(mono);
+      border-radius: 0.4rem;
+      padding: 0.8rem 0.5rem 0.5rem 1rem;
+      top: -5.2rem;
+      text-align: left;
+      width: 12rem;
+      box-shadow: 0 0.6rem 1.2rem -0.3rem rgba(0, 0, 0, 0.25), 0 0.4rem 0.4rem 0 rgba(0, 0, 0, 0.2),
+        0 1.2rem 1.4rem 0 rgba(0, 0, 0, 0.2);
+    }
+
+    .description .add-page-option .add-increment-box .add-increment-description {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: setColor(firm-gray, 700);
+      margin-bottom: 0.5rem;
+    }
+
+    .description .add-page-option .add-increment-box .add-increment-input {
+      width: 5.6rem;
+      border: none;
+      border-bottom: 0.1rem solid setColor(firm-gray, 300);
+    }
+
+    .description .add-page-option .add-increment-box .add-increment-input:focus {
+      outline: none;
+    }
+
+    .pagination-options {
+      display: block;
+      margin: 0 1.1rem;
+    }
+  }
+}

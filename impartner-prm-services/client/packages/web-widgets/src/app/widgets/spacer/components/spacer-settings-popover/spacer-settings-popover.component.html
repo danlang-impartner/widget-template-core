@@ -1,0 +1,21 @@
+<div class="popover-body">
+  <div class="content-title">Add spacing</div>
+  <div class="spacing-selection">
+    <div class="selections">
+      <span
+        *ngFor="let selectionOption of selectionOptions"
+        class="selection"
+        [ngClass]="{ active: spacerConfiguration.spacingSize === selectionOption.space }"
+        (click)="activateTopOption(selectionOption.space)"
+      >
+        {{ selectionOption.label }}
+      </span>
+    </div>
+  </div>
+</div>
+
+<div class="popover-footer">
+  <div class="button btn-affirm" (click)="apply()">
+    <span>Apply</span>
+  </div>
+</div>

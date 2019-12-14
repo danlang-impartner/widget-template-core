@@ -1,0 +1,51 @@
+<div class="grid-settings-component">
+  <div class="columns-info">
+    <span class="description" [translate]="'gridSettings.tableSetup'"></span>
+    <span
+      class="selected-columns"
+      [translate]="'gridSettings.numberSelectedFields'"
+      [translateParams]="{ numberSelectedFields: numberSelectedFields }"
+    ></span>
+    <span
+      class="total-columns"
+      [translate]="'gridSettings.numberColumns'"
+      [translateParams]="{ numberColumns: columnDefinition.length }"
+    ></span>
+  </div>
+
+  <ul class="w-column-list" [sortablejs]="columnDefinition" [sortablejsOptions]="sortableJsOptions">
+    <li class="w-column-item" *ngFor="let colDef of columnDefinition">
+      <input type="checkbox" [checked]="!colDef.hide" (click)="hideOrUnhideField(colDef)" />
+      {{ colDef.headerName }}
+      <div class="move-indicator">
+        <span class="rectangle"></span>
+        <span class="rectangle"></span>
+      </div>
+    </li>
+  </ul>
+
+  <!-- TODO: Uncomment the following block, once PM decides to include pagination options  -->
+  <!--form class="w-pagination">
+    <div class="title" [translate]="'gridSettings.paginationOptions'"></div>
+    <div class="description">
+      <div class="description-text" [translate]="'gridSettings.optionsHowManyResults'"></div>
+      <div class="add-page-option">
+        <svg-icon [applyCss]="true" name="add-square" class="icon"></svg-icon>
+        <div class="add-increment-box" *ngIf="showAddPageOptionBox">
+          <div class="add-increment-description" [translate]="'gridSettings.addIncrement'"></div>
+          <input
+            type="number"
+            class="add-increment-input"
+            (keydown.enter)="addNewPageOption($event)"
+          />
+        </div>
+      </div>
+    </div>
+
+    <w-impartner-multioption-list
+      class="pagination-options"
+      [options]="pageOptionList"
+      (optionsModified)="paginationOptionsModified($event)"
+    ></w-impartner-multioption-list>
+  </form-->
+</div>

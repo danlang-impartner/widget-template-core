@@ -1,0 +1,13 @@
+<svg width="16" height="16" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g transform="translate(-47.000000, -218.000000)">
+            <g transform="translate(43.000000, 214.000000)">
+                <rect x="0" y="0" width="24" height="24"></rect>
+                <g transform="translate(4.000000, 4.000000)">
+                    <circle stroke="currentColor" stroke-width="2" fill="none" fill-rule="nonzero" cx="8" cy="8" r="7"></circle>
+                    <circle fill="currentColor" cx="8" cy="8" r="3"></circle>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

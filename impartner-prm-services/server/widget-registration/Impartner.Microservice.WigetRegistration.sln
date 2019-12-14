@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28922.388
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Impartner.Microservice.WidgetRegistration", "src\Impartner.Microservice.WidgetRegistration\Impartner.Microservice.WidgetRegistration.csproj", "{4D933751-9BF7-4336-A222-EE87F12D008D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Impartner.Microservice.WidgetRegistration.Tests", "src\Impartner.Microservice.WidgetRegistration.Tests\Impartner.Microservice.WidgetRegistration.Tests.csproj", "{3454B1E2-86A8-4834-91E7-6A51E5250CF0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{0B6D3AAF-965D-4D51-BE2C-96647220E24F}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		Dockerfile = Dockerfile
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{B1E7AB43-B525-4250-A1A0-90EDFFED5945}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Impartner.Microservice.Common", "..\..\common\dotnet\Impartner.Microservice.Common\Impartner.Microservice.Common.csproj", "{B2F394DA-BD9E-4948-8E38-A7ED40865F25}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Impartner.Microservice.Common.Mongo", "..\..\common\dotnet\Impartner.Microservice.Common.Mongo\Impartner.Microservice.Common.Mongo.csproj", "{298F4FFF-30DB-418B-BB78-393EADDDDCCD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4D933751-9BF7-4336-A222-EE87F12D008D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D933751-9BF7-4336-A222-EE87F12D008D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D933751-9BF7-4336-A222-EE87F12D008D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D933751-9BF7-4336-A222-EE87F12D008D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3454B1E2-86A8-4834-91E7-6A51E5250CF0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3454B1E2-86A8-4834-91E7-6A51E5250CF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3454B1E2-86A8-4834-91E7-6A51E5250CF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3454B1E2-86A8-4834-91E7-6A51E5250CF0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B2F394DA-BD9E-4948-8E38-A7ED40865F25}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2F394DA-BD9E-4948-8E38-A7ED40865F25}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2F394DA-BD9E-4948-8E38-A7ED40865F25}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2F394DA-BD9E-4948-8E38-A7ED40865F25}.Release|Any CPU.Build.0 = Release|Any CPU
+		{298F4FFF-30DB-418B-BB78-393EADDDDCCD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{298F4FFF-30DB-418B-BB78-393EADDDDCCD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{298F4FFF-30DB-418B-BB78-393EADDDDCCD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{298F4FFF-30DB-418B-BB78-393EADDDDCCD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B2F394DA-BD9E-4948-8E38-A7ED40865F25} = {B1E7AB43-B525-4250-A1A0-90EDFFED5945}
+		{298F4FFF-30DB-418B-BB78-393EADDDDCCD} = {B1E7AB43-B525-4250-A1A0-90EDFFED5945}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3C89F7AC-93F4-41D5-B957-912665EC19F9}
+	EndGlobalSection
+EndGlobal

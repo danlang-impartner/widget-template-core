@@ -1,0 +1,59 @@
+@import '~@impartner/config-utils/scss/palette';
+
+.multiselect-list {
+  list-style: none;
+  padding: 0;
+  user-select: none;
+  position: relative;
+  top: -0.8rem;
+
+  .list-item {
+    margin: 0;
+    min-width: 2.8rem;
+    display: inline-block;
+    padding: 0.4rem 2.2rem 0.4rem 0.8rem;
+    border-radius: 0.6rem;
+    margin-right: 0.4rem;
+    margin-top: 0.2rem;
+    margin-top: 1.4rem;
+    background-color: setColor(firm-gray, 300);
+    border: 0.1rem solid setColor(firm-gray, 300);
+    color: setColor(firm-gray, 700);
+    position: relative;
+    cursor: pointer;
+    font-size: 1.2rem;
+    font-weight: 600;
+
+    &:hover {
+      background-color: setColor(mono);
+      box-shadow: 0rem 0.1rem 0.3rem 0.1rem setColor(firm-gray, 300);
+    }
+  }
+
+  .list-item:hover .remove-option {
+    display: block;
+  }
+
+  .list-item .input-item {
+    width: 2.5rem;
+  }
+
+  .list-item .remove-option {
+    background: none;
+    padding: 0;
+    border: none;
+    display: none;
+    font-size: 1.2rem;
+    position: absolute;
+    right: 0.5rem;
+    color: setColor(firm-gray, 700);
+    font-weight: 600;
+    top: 0.5rem;
+    cursor: pointer;
+  }
+
+  .list-item .remove-option .icon svg {
+    width: 1.2rem;
+    height: 1.2rem;
+  }
+}

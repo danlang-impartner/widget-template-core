@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Authors>Impartner</Authors>
+    <Company>Impartner</Company>
+    <Description>Microservice library that provides common tools and integrations with the Impartner Microservice ecosystem/infrastructure</Description>
+    <Copyright>Impartner © 2019</Copyright>
+    <PackageTags>Microservice, Mongo, Common, Infrastructure, Ecosystem</PackageTags>
+    <PackageProjectUrl>https://developer.impartner.com/impartner/prm-services</PackageProjectUrl>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Mongo.Migration" Version="3.0.73" />
+    <PackageReference Include="MongoDB.Driver" Version="2.9.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Impartner.Microservice.Common\Impartner.Microservice.Common.csproj" />
+  </ItemGroup>
+
+</Project>

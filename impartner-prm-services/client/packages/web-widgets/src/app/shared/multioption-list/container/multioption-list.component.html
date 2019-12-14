@@ -1,0 +1,17 @@
+<ul class="multiselect-list">
+  <li class="list-item" *ngFor="let item of options" (dblclick)="enableEditMode(item)">
+    <span *ngIf="!isItemInEditMode(item)">{{item.label}}</span>
+    <input
+      type="text"
+      class="input-item"
+      *ngIf="isItemInEditMode(item)"
+      [value]="item.value"
+      (blur)="disableEditMode()"
+      (keydown.enter)="updateValue($event, item)"
+      #inputItem
+    />
+    <button type="button" class="remove-option" (click)="removeItem(item)">
+        <svg-icon [applyCss]="true" name="close-circle" class="icon"></svg-icon>
+    </button>
+  </li>
+</ul>

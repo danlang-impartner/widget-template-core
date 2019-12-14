@@ -1,0 +1,10 @@
+<div class="list-tabs">
+  <div
+    class="tab"
+    *ngFor="let tab of tabs"
+    [ngClass]="{ selected: tab.id === selectedTabIndex }"
+    (click)="onTabSelected(tab)"
+  >
+    {{ tab.name }}
+  </div>
+</div>

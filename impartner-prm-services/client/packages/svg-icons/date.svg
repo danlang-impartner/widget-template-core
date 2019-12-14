@@ -1,0 +1,13 @@
+<svg width="20" height="20" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g transform="translate(-45.000000, -342.000000)">
+            <g transform="translate(43.000000, 340.000000)">
+                <rect x="0" y="0" width="24" height="24"></rect>
+                <g transform="translate(2.000000, 2.000000)" fill="currentColor" fill-rule="nonzero">
+					<path d="M18,3 L17,3 L17,0 L15,0 L15,5 L14,5 L14,3 L7,3 L7,0 L5,0 L5,5 L4,5 L4,3 L2,3 C0.897,3 0,3.898 0,5 L0,18 C0,19.103 0.897,20 2,20 L18,20 C19.103,20 20,19.103 20,18 L20,5 C20,3.898 19.103,3 18,3 Z M17.997,18 L2,18 L2,7 L18,7 L17.997,18 Z"></path>
+                </g>
+                <rect fill="none" x="4" y="9" width="16" height="11"></rect>
+            </g>
+        </g>
+    </g>
+</svg>

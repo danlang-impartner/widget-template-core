@@ -1,0 +1,32 @@
+<div class="define-datasource-component">
+  <div class="options-description" [translate]="'defineDatasource.title'"></div>
+  <div class="options-tabs">
+    <div
+      class="w-form-field"
+      [ngClass]="{ 'selected-tab': currentSelectedTab === FilterTab.Datasource }"
+      (click)="markTabAsSelected(FilterTab.Datasource)"
+    >
+      <label class="select-list-label" [translate]="'defineDatasource.source'"></label>
+
+      <w-impartner-select
+        [items]="prmObjectList | json"
+        [default]="businessObjectName"
+        [bindValue]="'value'"
+        [bindLabel]="'label'"
+        (change)="businessObjectChanged($event)"
+      ></w-impartner-select>
+    </div>
+
+    <div
+      class="w-filter"
+      [ngClass]="{ 'selected-tab': currentSelectedTab === FilterTab.Filter }"
+      (click)="markTabAsSelected(FilterTab.Filter)"
+    >
+      <div class="filter-label" [translate]="'defineDatasource.filterBy'"></div>
+      <div class="filter-icon">
+        <svg-icon [applyCss]="true" name="gear" class="icon"></svg-icon>
+      </div>
+    </div>
+  </div>
+</div>
+

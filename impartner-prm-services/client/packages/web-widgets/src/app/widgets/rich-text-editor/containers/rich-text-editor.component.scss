@@ -1,0 +1,141 @@
+@import '~@impartner/config-utils/scss/palette';
+
+$ck-colors: (
+  --ck-custom-background: #{setColor(firm-gray, default)},
+  --ck-custom-foreground: #{setColor(firm-gray, 700)},
+  --ck-custom-border: setColor(mono, 80),
+  --ck-custom-white: setColor(mono, default)
+);
+
+:host ::ng-deep .ck-editor__is-empty.ck-content.ck-editor__editable::before {
+  content: 'Enter your text here';
+  position: absolute;
+  display: block;
+  margin: var(--ck-spacing-large) 0;
+  color: #aaa;
+}
+
+:host ::ng-deep {
+  display: block;
+
+  .w-static-editor {
+    border: 0.2rem dashed setColor(firm-gray, 400);
+    border-radius: 0.2rem;
+    cursor: pointer;
+
+    .w-content {
+      padding-left: 0.6rem;
+      padding-right: 0rem;
+
+      > *:first-child {
+        margin-top: 0.68rem;
+      }
+
+      > *:last-child {
+        margin-bottom: 0.8rem;
+      }
+
+      &.w-empty {
+        color: #aaaaaa;
+        line-height: 2.7rem;
+      }
+    }
+  }
+
+  .ck.ck-toolbar {
+    font-size: 1.28rem;
+  }
+
+  .ck.ck-tooltip .ck-tooltip__text {
+    font-size: 1.3rem;
+  }
+
+  /* Overrides the border radius setting in the theme. */
+  --ck-border-radius: 0.25rem;
+
+  /* Overrides the default font size in the theme. */
+  --ck-font-size-base: 0.87rem;
+
+  /* Helper variables to avoid duplication in the colors. */
+  @each $variable, $value in $ck-colors {
+    #{$variable}: $value;
+  }
+
+  /* -- Overrides generic colors. ------------------------------------------------------------- */
+
+  --ck-color-base-foreground: var(--ck-custom-background);
+  --ck-color-focus-border: #{setColor(capable-blue, default)};
+  --ck-color-text: #{setColor(mono, default)};
+  --ck-color-shadow-drop: #{setColor(mono, 90)};
+  --ck-color-shadow-inner: #{setColor(mono, 90)};
+  --ck-color-base-border: #{setColor(firm-gray, default)};
+
+  /* -- Overrides the default .ck-button class colors. ---------------------------------------- */
+
+  --ck-color-button-default-background: var(--ck-custom-background);
+  --ck-color-button-default-hover-background: #{setColor(mono, 75)};
+  --ck-color-button-default-active-background: #{setColor(mono, 70)};
+  --ck-color-button-default-active-shadow: #{setColor(mono, 75)};
+  --ck-color-button-default-disabled-background: var(--ck-custom-background);
+
+  --ck-color-button-on-background: var(--ck-custom-foreground);
+  --ck-color-button-on-hover-background: #{setColor(mono, 85)};
+  --ck-color-button-on-active-background: #{setColor(mono, 85)};
+  --ck-color-button-on-active-shadow: #{setColor(mono, 90)};
+  --ck-color-button-on-disabled-background: var(--ck-custom-foreground);
+
+  --ck-color-split-button-hover-background: #{setColor(mono, 85)};
+  --ck-color-split-button-hover-border: #{setColor(mono, 90)};
+
+  /* -- Overrides the default .ck-dropdown class colors. -------------------------------------- */
+
+  --ck-color-dropdown-panel-background: var(--ck-custom-background);
+  --ck-color-dropdown-panel-border: var(--ck-custom-foreground);
+
+  /* -- Overrides the default .ck-input class colors. ----------------------------------------- */
+
+  --ck-color-input-background: var(--ck-custom-foreground);
+  --ck-color-input-border: #{setColor(mono, 70)};
+  --ck-color-input-text: #{setColor(mono, 5)};
+  --ck-color-input-disabled-background: #{setColor(mono, 85)};
+  --ck-color-input-disabled-border: #{setColor(mono, 75)};
+  --ck-color-input-disabled-text: #{setColor(mono, 65)};
+
+  /* -- Overrides the default .ck-list class colors. ------------------------------------------ */
+
+  --ck-color-list-background: var(--ck-custom-background);
+  --ck-color-list-button-hover-background: var(--ck-color-base-foreground);
+  --ck-color-list-button-on-background: var(--ck-color-base-active);
+  --ck-color-list-button-on-background-focus: var(--ck-color-base-active-focus);
+  --ck-color-list-button-on-text: var(--ck-color-base-background);
+
+  /* -- Overrides the default .ck-balloon-panel class colors. --------------------------------- */
+
+  --ck-color-panel-background: var(--ck-custom-background);
+  --ck-color-panel-border: var(--ck-custom-border);
+
+  /* -- Overrides the default .ck-toolbar class colors. --------------------------------------- */
+
+  --ck-color-toolbar-background: #{setColor(firm-gray, default)};
+  --ck-color-toolbar-border: #{setColor(firm-gray, default)};
+
+  /* -- Overrides the default .ck-tooltip class colors. --------------------------------------- */
+
+  --ck-color-tooltip-background: #{setColor(mono, 90)};
+  --ck-color-tooltip-text: #{setColor(mono, 5)};
+
+  /* -- Overrides the default colors used by the ckeditor5-image package. --------------------- */
+
+  --ck-color-image-caption-background: #{setColor(mono, 5)};
+  --ck-color-image-caption-text: #{setColor(mono, 80)};
+
+  /* -- Overrides the default colors used by the ckeditor5-widget package. -------------------- */
+
+  --ck-color-widget-blurred-border: #{setColor(mono, 15)};
+  --ck-color-widget-hover-border: #{setColor(sturdy-yellow, 500)};
+  --ck-color-widget-editable-focus-background: var(--ck-custom-white);
+
+  /* -- Overrides the default colors used by the ckeditor5-link package. ---------------------- */
+
+  --ck-color-link-default: #{setColor(bondi-blue, 200)};
+}

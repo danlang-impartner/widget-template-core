@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>@impartner/web-widgets - Grid</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet" />
+    <!-- Latest compiled and minified CSS -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+      crossorigin="anonymous"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.0/knockout-debug.js"></script>
+    <script>
+      window['appConfig'] = {
+        resourceUrl: './'
+      };
+    </script>
+    <script
+      type="application/javascript"
+      src="node_modules/@impartner/widget-runtime/dist/widget-runtime.js"
+    ></script>
+    <script type="text/javascript" src="/dist/@impartner/web-widgets/runtime.js"></script>
+    <script
+      type="text/javascript"
+      src="/dist/@impartner/web-widgets/es2015-polyfills.js"
+      nomodule
+    ></script>
+    <script type="text/javascript" src="/dist/@impartner/web-widgets/polyfills.js"></script>
+    <script type="text/javascript" src="/dist/@impartner/web-widgets/scripts.js"></script>
+    <script type="text/javascript" src="/dist/@impartner/web-widgets/vendor.js"></script>
+    <script type="text/javascript" src="/dist/@impartner/web-widgets/main.js"></script>
+    <script>
+      (() => {
+        const logger = window['com.impartner.logger'];
+        const widgetRuntime = window['com.impartner.widget.runtime'];
+
+        logger.loggerLevel = 0;
+        // TODO: (and IMPORTANT!) you should wait until the promise returned by
+        // lazyLoaded is resolved to be able to insert the tag in the DOM, otherwise the custom tag
+        // of the specific widget won't work!
+        widgetRuntime.manager.loadComponent(
+          {
+            vendor: 'Impartner',
+            type: 'ImpartnerGridFilters'
+          },
+          'Edit'
+        );
+        widgetRuntime.manager.loadComponent(
+          {
+            vendor: 'Impartner',
+            type: 'ImpartnerGridFilters'
+          },
+          'View'
+        );
+      })();
+
+      document.addEventListener('DOMContentLoaded', () => {
+        (() => {
+          const widgetRuntime = window['com.impartner.widget.runtime'];
+
+          function CMSTestModel() {
+            this.isInEditMode$ = ko.observable(false);
+            this.gridConfig$ = ko.observable({
+              tabs: [
+                {
+                  id: 1,
+                  name: 'Approved',
+                  gridConfig: {
+                    businessObjectName: 'Opportunity' ,
+                    rowFilters: [
+                      { id: 0, booleanOperator: 'and', fact: 'ApprovalStatus', operator: 'equals', value: ['Approved'] }
+                    ]
+                  }
+                },
+                {
+                  id: 2,
+                  name: 'Pending',
+                  gridConfig: {
+                    businessObjectName: 'Opportunity',
+                    columnsToShow: ['name', 'endUserCompany', 'dollarValue', 'dateOfLikelyClose'],
+                    rowFilters: [
+                      { id: 0, booleanOperator: 'and', fact: 'ApprovalStatus', operator: 'equals', value: ['Pending'] }
+                    ]
+                  }
+                },
+                {
+                  id: 3,
+                  name: 'Denied',
+                  gridConfig: {
+                    businessObjectName: 'Opportunity' ,
+                    rowFilters: [
+                      { id: 0, booleanOperator: 'and', fact: 'ApprovalStatus', operator: 'equals', value: ['Denied'] }
+                    ]
+                  }
+                },
+              ]
+            });
+            this.gridConfigJson$ = ko.computed(() => JSON.stringify(this.gridConfig$()));
+          }
+
+          widgetRuntime.eventBus.addEventListener('w-impartner.system.configChanged', event => {
+            console.log('Config changed!: %o', event);
+          });
+
+          const viewModel = new CMSTestModel();
+
+          ko.applyBindings(viewModel);
+        })();
+      });
+    </script>
+    <style>
+      html {
+        font-family: 'Open Sans';
+        font-size: 62.5%;
+      }
+
+      body {
+        font-size: 1.4rem;
+        font-family: 'Roboto', sans-serif;
+      }
+
+      .tst-container {
+        display: flex;
+      }
+
+      .widgets {
+        flex: auto;
+        width: 80%;
+      }
+
+      .control-panel {
+        flex: auto;
+        width: 20%;
+        min-height: 100%;
+        background-color: #1b2123;
+        z-index: 50;
+        margin-left: 1rem;
+        padding: 0.5rem 0.4%;
+      }
+
+      w-impartner-grid-filters-settings {
+        display: block;
+        width: 97%;
+      }
+    </style>
+  </head>
+  <body>
+    <h3>Example of w-impartner-grid-filters</h3>
+
+    <br />
+
+    <input
+      type="checkbox"
+      name="edit-mode"
+      id="edit-mode"
+      value="true"
+      data-bind="checked: isInEditMode$"
+    />
+    <label for="edit-mode">Edit Mode?</label>
+
+    <br />
+    <br />
+
+    <div class="tst-container">
+      <div class="widgets">
+        <!-- ko if: isInEditMode$() -->
+        <w-impartner-grid-filters-edit
+          data-bind="{ attr: { id: 1, 'locale-code': 'en', 'widget-config': gridConfigJson$ } }"
+        ></w-impartner-grid-filters-edit>
+        <!-- /ko -->
+
+        <!-- ko if: !isInEditMode$() -->
+        <w-impartner-grid-filters-view
+          data-bind="{ attr: { id: 1, 'locale-code': 'en', 'widget-config': gridConfigJson$ } }"
+        ></w-impartner-grid-filters-view>
+        <!-- /ko -->
+      </div>
+      <!-- ko if: isInEditMode$() -->
+      <div class="control-panel">
+        <w-impartner-grid-filters-settings></w-impartner-grid-filters-settings>
+      </div>
+      <!-- /ko -->
+    </div>
+  </body>
+</html>

@@ -1,0 +1,16 @@
+<div
+  *ngIf="prerenderMode; else editorView"
+  class="w-static-editor"
+  (click)="toggleEditMode($event)"
+>
+  <div class="w-content w-empty" *ngIf="isContentEmpty; else contentInStaticEditor">
+    Enter your text here
+  </div>
+  <ng-template #contentInStaticEditor>
+    <div class="w-content" [innerHTML]="data | safe: 'html'"></div>
+  </ng-template>
+</div>
+
+<ng-template #editorView>
+  <div class="code-editor" #editor></div>
+</ng-template>

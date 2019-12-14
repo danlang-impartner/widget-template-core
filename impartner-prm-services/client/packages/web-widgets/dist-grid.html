@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>@impartner/web-widgets - Grid</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.0/knockout-debug.js"></script>
+    <script>
+      window['appConfig'] = {
+        resourceUrl: './'
+      };
+    </script>
+    <script type="application/javascript" src="dist/package/vendor.js"></script>
+    <script type="application/javascript" src="dist/package/web-widgets.min.js"></script>
+    <script>
+      (() => {
+        const logger = window['com.impartner.logger'];
+        const widgetRuntime = window['com.impartner.widget.runtime'];
+
+        logger.loggerLevel = 0;
+        // TODO: (and IMPORTANT!) you should wait until the promise returned by
+        // lazyLoaded is resolved to be able to insert the tag in the DOM, otherwise the custom tag
+        // of the specific widget won't work!
+        widgetRuntime.manager.loadComponent(
+          {
+            vendor: 'Impartner',
+            type: 'ImpartnerPrmObjectGrid'
+          },
+          'Edit'
+        );
+        widgetRuntime.manager.loadComponent(
+          {
+            vendor: 'Impartner',
+            type: 'ImpartnerPrmObjectGrid'
+          },
+          'View'
+        );
+      })();
+
+      document.addEventListener('DOMContentLoaded', () => {
+        (() => {
+          const widgetRuntime = window['com.impartner.widget.runtime'];
+
+          function CMSTestModel() {
+            this.isInEditMode$ = ko.observable(false);
+            this.gridConfig$ = ko.observable({
+              businessObjectName: 'Deal'
+            });
+            this.gridConfigSecond$ = ko.observable({
+              businessObjectName: 'Sale'
+            });
+            this.gridConfigJson$ = ko.computed(() => JSON.stringify(this.gridConfig$()));
+            this.gridConfigJsonSecond$ = ko.computed(() =>
+              JSON.stringify(this.gridConfigSecond$())
+            );
+          }
+
+          const viewModel = new CMSTestModel();
+
+          widgetRuntime.eventBus.addEventListener('w-impartner.system.configChanged', event => {
+            console.log('Config changed!: %o', event);
+            if (event.widgetId === '1') {
+              viewModel.gridConfig$(event.configuration);
+            } else {
+              viewModel.gridConfigSecond$(event.configuration);
+            }
+          });
+
+          ko.applyBindings(viewModel);
+        })();
+      });
+    </script>
+    <style>
+      html{
+        font-family: 'Open Sans';
+        font-size: 0.625rem;
+      }
+      w-impartner-prm-object-grid-settings.settings-panel {
+        float: right;
+        width: 20%;
+        min-height: 100%;
+        background-color: #1b2123;
+        position: absolute;
+        top: 0;
+        right: 0;
+        z-index: 50;
+      }
+    </style>
+  </head>
+  <body>
+    <h3>Example of w-impartner-business-object-grid</h3>
+
+    <br />
+
+    <input
+      type="checkbox"
+      name="edit-mode"
+      id="edit-mode"
+      value="true"
+      data-bind="checked: isInEditMode$"
+    />
+    <label for="edit-mode">Edit Mode?</label>
+
+    <br />
+    <br />
+
+    <!-- ko if: isInEditMode$() -->
+    <w-impartner-prm-object-grid-edit
+      data-bind="{ attr: { id: 1, 'widget-config': gridConfigJson$ } }"
+    ></w-impartner-prm-object-grid-edit>
+
+    <w-impartner-prm-object-grid-edit
+      data-bind="{ attr: { id: 2, 'widget-config': gridConfigJsonSecond$ } }"
+    ></w-impartner-prm-object-grid-edit>
+    <!-- /ko -->
+
+    <!-- ko if: !isInEditMode$() -->
+    <w-impartner-prm-object-grid-view
+      data-bind="{ attr: { id: 1, 'widget-config': gridConfigJson$ } }"
+    ></w-impartner-prm-object-grid-view>
+
+    <w-impartner-prm-object-grid-view
+      data-bind="{ attr: { id: 2, 'widget-config': gridConfigJsonSecond$ } }"
+    ></w-impartner-prm-object-grid-view>
+    <!-- /ko -->
+
+    <!-- ko if: isInEditMode$() -->
+    <w-impartner-prm-object-grid-settings class="settings-panel"></w-impartner-prm-object-grid-settings>
+    <!-- /ko -->
+  </body>
+</html>

@@ -1,0 +1,75 @@
+.w-widget {
+  border: solid 1px red;
+  min-height: 40rem;
+  overflow: hidden;
+}
+
+.cube-container {
+  width: 20rem;
+  height: 20rem;
+  position: relative;
+  perspective: 100rem;
+  margin: 0 auto;
+}
+
+.cube {
+  animation: spin 5s infinite linear;
+  height: 100%;
+  position: absolute;
+  transform-style: preserve-3d;
+  transform: translateZ(-100px) rotateZ(45deg) rotateX(45deg);
+  width: 100%;
+}
+
+@keyframes spin {
+  0% {
+    transform: translateZ(-10rem) rotateY(360deg) rotateZ(0deg) rotateX(45deg);
+  }
+
+  50% {
+    transform: translateZ(-10rem) rotateY(180deg) rotateZ(180deg) rotateX(45deg);
+  }
+
+  100% {
+    transform: translateZ(-10rem) rotateY(0deg) rotateZ(360deg) rotateX(45deg);
+  }
+}
+
+.cube .face {
+  backface-visibility: hidden;
+  background: rgba(0, 0, 255, 0.25);
+  border: 1px dotted blue;
+  color: #fff;
+  display: block;
+  font-size: 12rem;
+  font-weight: bold;
+  height: 100%;
+  line-height: 20rem;
+  position: absolute;
+  text-align: center;
+  width: 100%;
+}
+
+.cube .front {
+  transform: rotateY(0deg) translateZ(10rem);
+}
+
+.cube .back {
+  transform: rotateX(180deg) translateZ(10rem);
+}
+
+.cube .right {
+  transform: rotateY(90deg) translateZ(10rem);
+}
+
+.cube .left {
+  transform: rotateY(-90deg) translateZ(10rem);
+}
+
+.cube .top {
+  transform: rotateX(90deg) translateZ(10rem);
+}
+
+.cube .bottom {
+  transform: rotateX(-90deg) translateZ(10rem);
+}

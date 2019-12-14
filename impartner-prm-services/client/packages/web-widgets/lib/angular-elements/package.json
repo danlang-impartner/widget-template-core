@@ -1,0 +1,15 @@
+{
+  "name": "@angular-impartner/elements",
+  "version": "1.0.0",
+  "description": "Alternative version of angular elements, that support lazy component loading",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "devDependencies": {
+    "typescript": "3.3.3"
+  },
+  "peerDependencies": {
+    "@angular/core": "7.2.4",
+    "@angular/elements": "7.2.4",
+    "rxjs": "6.3.3"
+  }
+}

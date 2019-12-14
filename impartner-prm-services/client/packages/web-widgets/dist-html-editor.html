@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>@impartner/web-widgets - HTML Editor</title>
+    <script src="knockout-3.5.0.js"></script>
+    <script>
+      window['appConfig'] = {
+        resourceUrl: './'
+      };
+    </script>
+    <script type="application/javascript" src="dist/package/vendor.js"></script>
+    <script type="application/javascript" src="dist/package/web-widgets.min.js"></script>
+    <script>
+      (() => {
+        const widgetRuntime = window['com.impartner.widget.runtime'];
+        const logger = window['com.impartner.logger'];
+        logger.loggerLevel = 0;
+        // TODO: (and IMPORTANT!) you should wait until the promise returned by
+        // lazyLoaded is resolved to be able to insert the tag in the DOM, otherwise the custom tag
+        // of the specific widget won't work!
+        widgetRuntime.manager.loadComponent(
+          {
+            vendor: 'Impartner',
+            type: 'ImpartnerHtmlEditor'
+          },
+          'Edit'
+        );
+        widgetRuntime.manager.loadComponent(
+          {
+            vendor: 'Impartner',
+            type: 'ImpartnerHtmlEditor'
+          },
+          'View'
+        );
+      })();
+      document.addEventListener('DOMContentLoaded', () => {
+        (() => {
+          const widgetRuntime = window['com.impartner.widget.runtime'];
+
+          function CMSTestModel() {
+            this.isInEditMode$ = ko.observable('true');
+            this.editorContent$ = ko.observable('<p>test content</p>');
+            this.totalEditors$ = ko.observableArray([1]);
+            this.isInEditMode$ = ko.observable('false');
+
+            const listener = data => {
+              this.editorContent$(data.data);
+
+              return true;
+            };
+
+            const listenerRegistry = widgetRuntime.eventBus.addEventListener(
+              'w-impartner.system.dataChanged',
+              listener
+            );
+          }
+
+          ko.applyBindings(new CMSTestModel());
+        })();
+      });
+    </script>
+    <style>
+      w-impartner-html-editor {
+        margin-bottom: 1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <h3>w-impartner-html-editor</h3>
+
+    <input
+      type="checkbox"
+      name="edit-mode"
+      id="edit-mode"
+      value="true"
+      data-bind="{ checked: isInEditMode$ }"
+    />
+    <label for="edit-mode">Edit Mode?</label>
+
+    <!-- ko foreach: { data: totalEditors$, as: 'numberEditor', noChildContext: true } -->
+
+    <!-- ko if: isInEditMode$() -->
+    <w-impartner-html-editor-edit
+      data-bind="{
+        attr: { data: editorContent$ }
+      }"
+    ></w-impartner-html-editor-edit>
+    <!-- /ko -->
+
+    <!-- ko if: !isInEditMode$() -->
+    <w-impartner-html-editor-view
+      data-bind="{
+      attr: { data: editorContent$ }
+    }"
+    ></w-impartner-html-editor-view>
+    <!-- /ko -->
+
+    <!-- /ko -->
+  </body>
+</html>

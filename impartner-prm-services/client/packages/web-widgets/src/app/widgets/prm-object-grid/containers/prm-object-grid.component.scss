@@ -1,0 +1,14 @@
+.prm-object-grid-component {
+  position: relative;
+  display: block;
+
+  .edit-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 78%;
+    z-index: 50;
+    cursor: pointer;
+  }
+}

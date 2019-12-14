@@ -1,0 +1,109 @@
+@import '~@impartner/config-utils/scss/palette';
+
+:host {
+  position: relative;
+}
+
+.selected-option {
+  border: 0.2rem solid setColor(capable-blue, 400);
+  background-color: setColor(capable-blue, 200);
+  padding: 0.9rem 0;
+  display: flex;
+  align-items: center;
+  border-radius: 0.4rem;
+  margin: 0rem 0.8rem;
+  cursor: pointer;
+  user-select: none;
+
+  .option-icon {
+    margin-right: 0.7rem;
+    margin-left: 0.5rem;
+
+    .icon {
+      color: setColor(capable-blue, default);
+    }
+  }
+
+  .option-label {
+    flex: 3;
+    color: setColor(secure-blue, 700);
+    font-size: 1.4rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+  .menu-icon {
+    margin-right: 0.9rem;
+    height: 1.6rem;
+
+    .icon {
+      color: setColor(capable-blue, default);
+    }
+  }
+}
+
+.options-list {
+  width: 22.8rem;
+  min-height: 11.8rem;
+  padding-bottom: 1rem;
+  border-radius: 0.3rem;
+  box-shadow: 0 1rem 0.5rem -0.5rem lighten(setColor(firm-gray, 900), 12%),
+    0 0.1rem 0.5rem 0 lighten(setColor(firm-gray, 900), 13%),
+    0 1.4rem 1.4rem 0 lighten(setColor(firm-gray, 900), 13%);
+  position: absolute;
+  top: 3.3rem;
+  left: 3.3rem;
+  background-color: setColor(mono, default);
+
+  .popover-header {
+    display: flex;
+    padding: 1.1rem 0rem;
+    margin: 0 0.8rem;
+    border-bottom: 0.1rem solid setColor(firm-gray, 500);
+
+    .list-description {
+      flex: 2;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: setColor(firm-gray, 800);
+      margin-left: 0.3rem;
+    }
+
+    .close-icon {
+      cursor: pointer;
+      margin-right: 0.5rem;
+
+      .icon {
+        color: setColor(firm-gray, 600);
+      }
+    }
+  }
+
+  .list-options {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: 0.3rem 0.7rem;
+    min-height: 3.2rem;
+
+    &:nth-child(odd) {
+      background-color: setColor(firm-gray, 200);
+    }
+
+    .option-icon {
+      margin: 0 0.9rem 0 0rem;
+
+      .icon {
+        color: setColor(firm-gray, 900);
+      }
+    }
+
+    .option-label {
+      flex: 3;
+      font-size: 1.2rem;
+      color: darken(setColor(firm-gray, 800), 40%);
+      margin-right: 1rem;
+    }
+  }
+}

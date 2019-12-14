@@ -1,0 +1,17 @@
+<div class="grid-filters-edit">
+  <w-impartner-show-tabs
+    [tabs]="gridFiltersConfig.tabs"
+    [selectedTabIndex]="selectedTab?.id"
+    (tabSelected)="onTabSelected($event)"
+  ></w-impartner-show-tabs>
+  <div class="edit-layer" (click)="setAsActiveGridForSettings()">
+    <w-impartner-prm-object-grid-edit
+      #prmObjectGrid
+      *ngIf="selectedTab"
+      [editMode]="setEditModePrmGrid"
+      [id]="selectedTab.id"
+      [widgetConfig]="selectedTab.gridConfig | json"
+      [localeCode]="localeCode"
+    ></w-impartner-prm-object-grid-edit>
+  </div>
+</div>

@@ -1,0 +1,6 @@
+{
+  "rules": {
+    "block-closing-brace-newline-after": "always",
+    "unit-whitelist": ["%", "rem", "s", "vh", "ms", "deg"]
+  }
+}

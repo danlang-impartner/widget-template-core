@@ -1,0 +1,16 @@
+<div
+  *ngIf="prerenderMode; else ckeditorView"
+  class="w-static-editor"
+  (click)="toggleEditMode($event)"
+>
+  <div class="w-content w-empty" [translate]="'enterYourTextHere'" *ngIf="isContentEmpty; else contentInStaticEditor"></div>
+  <ng-template #contentInStaticEditor>
+    <div class="w-content" [innerHTML]="content | safe: 'html'"></div>
+  </ng-template>
+</div>
+
+<ng-template #ckeditorView>
+  <div #ckeditorTag>
+    <ckeditor [editor]="editor" [config]="widgetConfig" (change)="change($event)" (ready)="ready($event)"></ckeditor>
+  </div>
+</ng-template>

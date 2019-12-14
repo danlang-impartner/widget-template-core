@@ -1,0 +1,18 @@
+@import '~@impartner/config-utils/scss/palette';
+
+:host ::ng-deep {
+  @import '~ag-grid-community/dist/styles/ag-grid';
+  @import '~ag-grid-community/dist/styles/ag-theme-balham';
+
+  .ag-theme-balham .ag-cell {
+    border: 0.06rem solid #d9dcde;
+  }
+
+  .ag-theme-balham .ag-row {
+    border: none;
+  }
+
+  ag-grid-angular {
+    width: 100%;
+  }
+}

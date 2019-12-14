@@ -1,0 +1,33 @@
+@import '~@impartner/config-utils/scss/palette';
+
+:host ::ng-deep {
+  display: block;
+
+  .w-static-editor {
+    border: 0.2rem dashed setColor(firm-gray, 400);
+    border-radius: 0.2rem;
+    cursor: pointer;
+
+    .w-content {
+      padding-left: 0.6rem;
+      padding-right: 0rem;
+
+      > *:first-child {
+        margin-top: 0.68rem;
+      }
+
+      > *:last-child {
+        margin-bottom: 0.8rem;
+      }
+
+      &.w-empty {
+        color: #aaaaaa;
+        line-height: 2.7rem;
+      }
+    }
+  }
+
+  .code-editor {
+    border: 0.06rem solid setColor(capable-blue, default);
+  }
+}

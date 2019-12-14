@@ -1,0 +1,37 @@
+<div class="filter-configuration">
+  <div class="title">{{ title }}</div>
+  <div class="field-list">
+    <select class="field-dropdown" [value]="rowFilter.fact" (change)="fieldChanged($event)">
+      <option *ngFor="let field of fieldDefinitions" [value]="field.colId">{{field.headerName}}</option>
+    </select>
+  </div>
+  <div class="filter-row" *ngFor="let currentValue of rowFilter.value; index as index">
+    <div class="operators-list" *ngIf="index === 0">
+      <w-impartner-dropdown-icon
+        [options]="operatorsDropdownOptions"
+        [selectedOption]="defaultOperatorDropdown"
+        [dropdownTitle]="'Available Operators'"
+        (valueChangedEvent)="operatorChanged($event)"
+      ></w-impartner-dropdown-icon>
+    </div>
+    <div class="boolean-connector" *ngIf="index > 0">
+      <div class="left-arrow"></div>
+      <div class="boolean-operator" [translate]="'filterRows.orOperator'"></div>
+      <div class="right-arrow"></div>
+    </div>
+    <input
+      type="text"
+      class="input-filter"
+      [disabled]="!rowFilter || !rowFilter.fact"
+      [value]="currentValue"
+      (blur)="filterValueChanged($event, index)"
+      #inputFilterValue
+    />
+  </div>
+  <a
+    href="#"
+    class="another-value-link"
+    (click)="addNewValue($event)"
+    [translate]="'filterRows.anotherValue'"
+  ></a>
+</div>

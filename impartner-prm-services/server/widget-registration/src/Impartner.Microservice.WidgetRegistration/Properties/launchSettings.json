@@ -1,0 +1,13 @@
+{
+	"profiles": {
+		"Training": {
+			"commandName": "Project",
+			"launchBrowser": true,
+			"environmentVariables": {
+				"ASPNETCORE_ENVIRONMENT": "Development"
+			},
+			"applicationUrl": "http://localhost:5045/",
+			"launchUrl": "swagger"
+		}
+	}
+}

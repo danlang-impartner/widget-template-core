@@ -1,0 +1,107 @@
+version: '3'
+
+services:
+  proxy:
+    image: proxy
+    container_name: proxy
+    build:
+      context: ./server/nginxrouter
+    ports:
+      - "8001:80"
+    networks:
+      - services
+
+  mongo:
+    image: mongo:4.0.3
+    container_name: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - "mongodb:/data/db"
+    networks:
+      - data
+
+  mongo-client:
+    image: mongoclient/mongoclient:2.2.0
+    container_name: mongo-client
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mongo
+    networks:
+      - data
+    environment:
+      - MONGOCLIENT_DEFAULT_CONNECTION_URL=mongodb://mongo:27017
+
+  dynamic-forms:
+    image: dynamic-forms
+    container_name: dynamic-forms
+    ports:
+      - "5010:80"
+    build:
+      context: ./
+      dockerfile: ./server/dynamic-forms/Dockerfile
+    depends_on:
+      - mongo
+    networks:
+      - data
+      - services
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+
+  localization:
+    image: localization
+    container_name: localization
+    ports:
+      - "5020:80"
+    build:
+      context: ./
+      dockerfile: ./server/localization/Dockerfile
+    depends_on:
+      - mongo
+    networks:
+      - data
+      - services
+    environment:
+       - ASPNETCORE_ENVIRONMENT=Development
+
+  training:
+    image: training
+    container_name: training
+    ports:
+      - "5030:80"
+    build:
+      context: ./
+      dockerfile: ./server/training/Dockerfile
+    depends_on:
+      - mongo
+    networks:
+      - data
+      - services
+    environment:
+       - ASPNETCORE_ENVIRONMENT=Development
+       
+  widget-registration:
+    image: widget-registration
+    container_name: widget-registration
+    ports:
+      - "5045:80"
+    build:
+      context: ./
+      dockerfile: ./server/widget-registration/Dockerfile
+    depends_on:
+      - mongo
+    networks:
+      - data
+      - services
+    environment:
+       - ASPNETCORE_ENVIRONMENT=Development
+
+volumes:
+  mongodb:
+
+networks:
+  data:
+    driver: bridge
+  services:
+    driver: bridge

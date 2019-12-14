@@ -1,0 +1,20 @@
+<div class="w-container">
+  Hi, I am the hello customer widget.
+  <p>I live in @impartner/web-widgets.</p>
+
+  <p class="w-message">I receive a msg from another widget: "{{ message }}"</p>
+
+  <div *ngIf="dataFromEditor != ''">
+    I receive the content from rich-text-editor:
+    <div [innerHTML]="dataFromEditor | safe: 'html'"></div>
+  </div>
+
+  <h5>Customers:</h5>
+
+  <h6>In JSON:</h6>
+  <pre>{{ customers }}</pre>
+
+  <ul>
+    <li *ngFor="let customer of customersList">{{ customer }}</li>
+  </ul>
+</div>

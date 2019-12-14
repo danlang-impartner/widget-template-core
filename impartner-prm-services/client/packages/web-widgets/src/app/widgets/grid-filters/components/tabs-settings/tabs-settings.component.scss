@@ -1,0 +1,38 @@
+@import '~@impartner/config-utils/scss/palette';
+@import '~perfect-scrollbar/css/perfect-scrollbar.css';
+
+.tabs-settings {
+  margin-bottom: 1rem;
+  display: flex;
+  background-color: setColor(firm-gray, 900);
+
+  .tabs-list {
+    flex: 2 1 90%;
+    height: 3rem;
+    white-space: nowrap;
+    position: relative;
+    max-width: 90%;
+
+    .ps__rail-x,
+    .ps__rail-x:hover {
+      height: 0.7rem;
+
+      .ps__thumb-x {
+        height: 0.5rem;
+      }
+    }
+  }
+
+  .buttons-container {
+    flex: 1 1 10%;
+    display: flex;
+    align-items: center;
+    justify-content: right;
+
+    .add-tab-button {
+      text-align: right;
+      flex: 1 1 100%;
+      color: setColor(bondi-blue);
+    }
+  }
+}

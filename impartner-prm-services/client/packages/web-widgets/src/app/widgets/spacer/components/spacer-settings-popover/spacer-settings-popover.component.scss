@@ -1,0 +1,97 @@
+@import '~@impartner/config-utils/scss/palette';
+
+.popover-body {
+  padding: 0rem;
+  background: setColor(mono);
+  height: 8rem;
+  font-style: italic;
+  font-weight: normal;
+}
+
+.popover-footer {
+  background: setColor(able-aqua, 400);
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: flex-end;
+  flex: 0 0 5.6rem;
+  color: setColor(mono);
+  padding: 0.8rem;
+  height: 4rem;
+
+  .button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 8.8rem;
+    height: 3.2rem;
+    border-radius: 0.4rem;
+    margin: 0 0.4rem;
+  }
+
+  .button:hover {
+    cursor: pointer;
+  }
+
+  .btn-affirm {
+    color: setColor(firm-gray);
+    font-family: OpenSans, arial, sans-serif;
+    border: none;
+    background: setColor(ardent-yellow);
+  }
+}
+
+.content-title {
+  margin: 1.2rem 1.6rem;
+  font-style: italic;
+  font-size: 1.4rem;
+}
+
+.spacing-selection {
+  margin: 0rem 1.6rem;
+  padding: 0.5rem 1.6rem;
+}
+
+.selections {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0.4rem 0;
+  padding: 0;
+}
+
+.selection {
+  color: setColor(bondi-blue);
+  background: setColor(mono);
+  border: 0.1rem solid setColor(bondi-blue);
+  border-right: none;
+  flex-basis: 20%;
+  font-size: 1.4rem;
+  height: 2.4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+
+  &:hover {
+    cursor: pointer;
+    background-color: setColor(bondi-blue, 50);
+    transition: background-color 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+  }
+
+  &.active {
+    color: setColor(mono);
+    background: setColor(bondi-blue);
+  }
+
+  &:last-of-type {
+    border-right: 0.1rem solid setColor(bondi-blue);
+    border-bottom-right-radius: 0.4rem;
+    border-top-right-radius: 0.4rem;
+  }
+
+  &:first-of-type {
+    border-top-left-radius: 0.4rem;
+    border-bottom-left-radius: 0.4rem;
+  }
+}

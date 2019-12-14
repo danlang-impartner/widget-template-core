@@ -1,0 +1,11 @@
+{
+  "name": "@impartner/svg-icons",
+  "version": "1.0.14",
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "svg-baker-runtime": "1.4.0"
+  },
+  "publishConfig": {
+    "registry": "http://repository.treehousei.net/repository/npm-hosted/"
+  }
+}

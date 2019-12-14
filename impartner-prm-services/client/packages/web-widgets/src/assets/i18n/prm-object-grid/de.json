@@ -1,0 +1,10 @@
+{
+  "gridSettings": {
+    "tableSetup": "Tabelle setup",
+    "numberSelectedFields": "{{ numberSelectedFields }} ausgewählt",
+    "numberColumns": "{{ numberColumns }} Spalten insgesamt",
+    "paginationOptions": "Paginierung Optionen",
+    "optionsHowManyResults": "Optionen für wie viele Ergebnisse pro Seite angezeigt werden",
+    "addIncrement": "Fügen Sie eine Schrittweite"
+  }
+}

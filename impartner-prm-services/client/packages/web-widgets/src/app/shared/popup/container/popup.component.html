@@ -1,0 +1,9 @@
+<ngx-smart-modal #customPopup identifier="customPopup" [closable]="false">
+  <h1 *ngIf="title != ''">{{ title }}</h1>
+  <p>{{ text }}</p>
+  <hr />
+  <div class="btn-bar">
+    <button class="btn-positive" (click)="confirm()">{{ buttonText }}</button>
+    <button class="btn-cancel" (click)="customPopup.close()">Close</button>
+  </div>
+</ngx-smart-modal>

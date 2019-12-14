@@ -1,0 +1,12 @@
+{
+  "gridFilterSettings": {
+    "filterDescription": "Filtre \"{{ businessObjectName }}\" par les critères suivants:",
+    "anotherFilter": "+ Un Autre Filtre"
+  },
+  "defineDatasource": {
+    "title": "Définir La Source De Données",
+    "source": "Source",
+    "filterBy": "Filtre Par"
+  },
+  "filterRows": { "orOperator": "Ou", "anotherValue": "+ Une Autre Valeur" }
+}

@@ -1,0 +1,48 @@
+<div class="selected-option" (click)="toggleOptionsList($event)">
+  <div class="option-icon">
+    <svg-icon
+      [name]="selectedOption.iconName"
+      [applyCss]="true"
+      [svgStyle]="{ 'width.rem': 1.6, 'height.rem': 1.2 }"
+      class="icon"
+    ></svg-icon>
+  </div>
+  <div class="option-label">{{ selectedOption.label }}</div>
+  <div class="menu-icon">
+    <svg-icon
+      name="kebab"
+      [applyCss]="true"
+      [svgStyle]="{ 'width.rem': 0.4, 'height.rem': 1.6 }"
+      class="icon"
+    ></svg-icon>
+  </div>
+</div>
+
+<div class="options-list" *ngIf="showOptions">
+  <div class="popover-header">
+    <div class="list-description">{{ dropdownTitle }}</div>
+    <div class="close-icon" (click)="toggleOptionsList($event)">
+      <svg-icon
+        name="close"
+        [applyCss]="true"
+        [svgStyle]="{ 'width.rem': 1.2, 'height.rem': 1.2 }"
+        class="icon"
+      ></svg-icon>
+    </div>
+  </div>
+  <div
+    class="list-options"
+    *ngFor="let currentOption of options"
+    (click)="valueSelected(currentOption)"
+  >
+    <div class="option-icon">
+      <svg-icon
+        [name]="currentOption.iconName"
+        [applyCss]="true"
+        [svgStyle]="{ 'width.rem': 1.2, 'height.rem': 1.2 }"
+        class="icon"
+      ></svg-icon>
+    </div>
+    <div class="option-label">{{ currentOption.label }}</div>
+  </div>
+</div>

@@ -1,0 +1,84 @@
+@import '~@impartner/config-utils/scss/palette';
+
+$grid-base-font-size: 1.5rem;
+
+.define-datasource-component {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+
+  .options-description {
+    flex: auto;
+    width: 100%;
+    font-size: 1.3rem;
+    color: setColor(firm-gray, 900);
+    padding: 0.6rem 0.4rem;
+  }
+
+  .options-tabs {
+    flex: auto;
+    width: 100%;
+    display: flex;
+    padding: 0.2rem 0.4rem;
+  }
+
+  .options-tabs .w-form-field,
+  .options-tabs .w-filter {
+    cursor: pointer;
+    user-select: none;
+    border: 0.1rem solid setColor(firm-gray, 400);
+    background-color: lighten(setColor(firm-gray, 100), 3%);
+    border-radius: 0.5rem;
+    padding: 0rem 0.5rem;
+    flex: 1;
+
+    &.selected-tab {
+      border: 0.2rem solid setColor(bondi-blue, 500);
+    }
+  }
+
+  .options-tabs .w-form-field {
+    border-bottom: 0.1rem solid setColor(firm-gray, 400);
+
+    .select-list-label {
+      width: 12.4rem;
+      height: 1.5rem;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: lighten(setColor(firm-gray, 700), 20%);
+    }
+
+    w-impartner-select {
+      font-size: $grid-base-font-size;
+
+      &.results-page {
+        display: block;
+        width: 8rem;
+      }
+    }
+  }
+
+  .options-tabs .w-filter {
+    border-bottom: 0.1rem solid setColor(firm-gray, 400);
+    margin-left: 0.2rem;
+    display: flex;
+    align-items: center;
+
+    .filter-label {
+      font-size: $grid-base-font-size;
+      color: setColor(firm-gray, 900);
+      flex: 4;
+    }
+
+    .filter-icon {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+    }
+
+    .filter-icon .icon svg {
+      width: 1.6rem;
+      height: 1.6rem;
+    }
+  }
+}

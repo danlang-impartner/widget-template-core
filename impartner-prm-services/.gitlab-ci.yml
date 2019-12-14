@@ -1,0 +1,340 @@
+stages:
+  - build
+  - deploy
+  - stageApproval
+  - stageDeploy
+  - prodApproval
+  - prodDeploy
+
+variables:
+  DOCKER_DRIVER: overlay2
+  CONTAINER_RELEASE_IMAGE: $ACR_REGISTRY/$CI_PROJECT_NAME/$MS:$CI_COMMIT_SHORT_SHA
+  IMAGE_REPOSITORY: $ACR_REGISTRY/$CI_PROJECT_NAME/$MS
+  INGRESS_CLASS: nginx
+
+.build_template: &build_template
+  tags: 
+    - kubernetes
+  stage: build
+  image: docker:stable-git
+  script:
+    - setup_docker
+    - docker build -t $CONTAINER_RELEASE_IMAGE -f ./server/$MS/Dockerfile .
+    - echo $CI_COMMIT_REF_SLUG
+    - if [ `expr match $CI_COMMIT_REF_SLUG ".*master.*"` -eq 0 ]; then exit 0; fi;
+    - docker login -u $ACR_USER -p $ACR_PASSWORD $ACR_REGISTRY
+    - docker push $CONTAINER_RELEASE_IMAGE
+
+build_dynamic-forms:
+  <<: *build_template
+  variables:
+    MS: dynamic-forms
+  only:
+    changes:
+      - server/dynamic-forms/**/*
+      - server/dynamic-forms/*
+      - common/**/*
+      - .gitlab-ci.yml
+
+build_localization:
+  <<: *build_template
+  variables:
+    MS: localization
+  only:
+    changes:
+      - server/localization/**/*
+      - server/localization/*
+      - common/**/*
+      - .gitlab-ci.yml
+
+build_training:
+  <<: *build_template
+  variables:
+    MS: training
+  only:
+    changes:
+      - server/training/**/*
+      - server/training/*
+      - common/**/*      
+      - .gitlab-ci.yml
+
+build_widget-registration:
+  <<: *build_template
+  variables:
+    MS: widget-registration
+  only:
+    changes:
+      - server/widget-registration/**/*
+      - server/widget-registration/*
+      - common/**/*      
+      - .gitlab-ci.yml
+
+.deploy_template: &deploy_template
+  tags: 
+  - kubernetes
+  environment:
+    name: $ENV/$MS
+    url: http://$ENV.azw2k8.impartner.io/$MS
+  stage: deploy
+  image: lachlanevenson/k8s-helm:v2.14.2
+  script:
+    - mkdir ~/.kube
+    - cp $KUBECONFIG ~/.kube/config
+    - cd server/$MS/charts
+    - helm upgrade --install --namespace $ENV $MS-$ENV $MS --set-string image.tag=$CI_COMMIT_SHORT_SHA --set image.repository=$IMAGE_REPOSITORY --set ingress.path="/$MS(/|$)(.*)"  --set ingress.annotations."kubernetes\.io/ingress\.class"=$INGRESS_CLASS  --set ingress.annotations."nginx\.ingress\.kubernetes\.io/x-forwarded-prefix"=/$MS --set ingress.hosts={$ENV.azw2k8.impartner.io}  --set $ENVS
+
+deploy_dev_dynamic-forms:
+  <<: *deploy_template
+  variables:
+    ENV: dev
+    MS: dynamic-forms
+    ENVS: envs.NEW_RELIC_LICENSE_KEY=$dev_NEW_RELIC_LICENSE_KEY
+  only:
+    changes:
+      - server/dynamic-forms/**/*
+      - server/dynamic-forms/*
+      - common/**/*      
+      - .gitlab-ci.yml
+    refs:
+      - master
+
+deploy_dev_localization:
+  <<: *deploy_template
+  variables:
+    ENV: dev
+    MS: localization
+    ENVS: envs.NEW_RELIC_LICENSE_KEY=$dev_NEW_RELIC_LICENSE_KEY
+  only:
+    changes:
+      - server/localization/**/*
+      - server/localization/*
+      - common/**/*      
+      - .gitlab-ci.yml
+    refs:
+      - master
+
+deploy_dev_training:
+  <<: *deploy_template
+  variables:
+    ENV: dev
+    MS: training
+    ENVS: envs.NEW_RELIC_LICENSE_KEY=$dev_NEW_RELIC_LICENSE_KEY
+  only:
+    changes:
+      - server/training/**/*
+      - server/training/*
+      - common/**/*      
+      - .gitlab-ci.yml
+    refs:
+      - master
+
+deploy_stage_dynamic-forms:
+  <<: *deploy_template
+  stage: stageDeploy
+  variables:
+    ENV: stage
+    MS: dynamic-forms
+    ENVS: envs.NEW_RELIC_LICENSE_KEY=$stage_NEW_RELIC_LICENSE_KEY
+  only:
+    changes:
+      - server/dynamic-forms/**/*
+      - server/dynamic-forms/*
+      - common/**/*      
+      - .gitlab-ci.yml
+    refs:
+      - master
+
+deploy_dev_widget-registration:
+  <<: *deploy_template
+  variables:
+    ENV: dev
+    MS: widget-registration
+    ENVS: envs.NEW_RELIC_LICENSE_KEY=$dev_NEW_RELIC_LICENSE_KEY
+  only:
+    changes:
+      - server/widget-registration/**/*
+      - server/widget-registration/*
+      - common/**/*      
+      - .gitlab-ci.yml
+    refs:
+      - master
+
+deploy_stage_localization:
+  <<: *deploy_template
+  stage: stageDeploy
+  variables:
+    ENV: stage
+    MS: localization
+    ENVS: envs.NEW_RELIC_LICENSE_KEY=$stage_NEW_RELIC_LICENSE_KEY
+  only:
+    changes:
+      - server/localization/**/*
+      - server/localization/*
+      - common/**/*      
+      - .gitlab-ci.yml
+    refs:
+      - master
+
+deploy_stage_training:
+  <<: *deploy_template
+  stage: stageDeploy
+  variables:
+    ENV: stage
+    MS: training
+    ENVS: envs.NEW_RELIC_LICENSE_KEY=$stage_NEW_RELIC_LICENSE_KEY
+  only:
+    changes:
+      - server/training/**/*
+      - server/training/*
+      - common/**/*      
+      - .gitlab-ci.yml
+    refs:
+      - master
+
+deploy_stage_widget-registration:
+  <<: *deploy_template
+  stage: stageDeploy
+  variables:
+    ENV: stage
+    MS: widget-registration
+    ENVS: envs.NEW_RELIC_LICENSE_KEY=$stage_NEW_RELIC_LICENSE_KEY
+  only:
+    changes:
+      - server/widget-registration/**/*
+      - server/widget-registration/*
+      - common/**/*      
+      - .gitlab-ci.yml
+    refs:
+      - master
+
+get_stage_approval:
+  stage: stageApproval
+  tags: 
+    - windows
+  variables:
+    OCTO_PROJ: "prm-services"
+    OCTO_URL: "http://devoctopus/"
+  before_script:
+    - hostname
+  script:
+    - 'octo create-release --variable GITSHA:%CI_COMMIT_SHA% --project %OCTO_PROJ% --version 1-%CI_COMMIT_SHORT_SHA% --deployto stage --server %OCTO_URL% --apiKey %OCTO_API_KEY% --deploymenttimeout 01:00:00 --progress'
+  when: manual
+  allow_failure: false
+  only:
+   changes:
+     - server/**/*
+     - common/**/*
+     - .gitlab-ci.yml
+   refs:
+     - master
+
+deploy_prod_dynamic-forms:
+  <<: *deploy_template
+  stage: prodDeploy
+  variables:
+    ENV: prod
+    MS: dynamic-forms
+    ENVS: envs.NEW_RELIC_LICENSE_KEY=$prod_NEW_RELIC_LICENSE_KEY
+    INGRESS_CLASS: nginx-prod
+  only:
+    changes:
+      - server/dynamic-forms/**/*
+      - server/dynamic-forms/*
+      - common/**/*      
+      - .gitlab-ci.yml
+    refs:
+      - master
+
+deploy_prod_localization:
+  <<: *deploy_template
+  stage: prodDeploy
+  variables:
+    ENV: prod
+    MS: localization
+    ENVS: envs.NEW_RELIC_LICENSE_KEY=$prod_NEW_RELIC_LICENSE_KEY
+    INGRESS_CLASS: nginx-prod
+  only:
+    changes:
+      - server/localization/**/*
+      - server/localization/*
+      - common/**/*
+      - .gitlab-ci.yml
+    refs:
+      - master
+
+deploy_prod_training:
+  <<: *deploy_template
+  stage: prodDeploy
+  variables:
+    ENV: prod
+    MS: training
+    ENVS: envs.NEW_RELIC_LICENSE_KEY=$prod_NEW_RELIC_LICENSE_KEY
+    INGRESS_CLASS: nginx-prod
+  only:
+    changes:
+      - server/training/**/*
+      - server/training/*
+      - common/**/*
+      - .gitlab-ci.yml
+    refs:
+      - master
+
+deploy_prod_widget-registration:
+  <<: *deploy_template
+  stage: prodDeploy
+  variables:
+    ENV: prod
+    MS: widget-registration
+    ENVS: envs.NEW_RELIC_LICENSE_KEY=$prod_NEW_RELIC_LICENSE_KEY
+    INGRESS_CLASS: nginx-prod
+  only:
+    changes:
+      - server/widget-registration/**/*
+      - server/widget-registration/*
+      - common/**/*
+      - .gitlab-ci.yml
+    refs:
+      - master
+
+get_prod_approval:
+  stage: prodApproval
+  tags: 
+    - windows
+  variables:
+    OCTO_PROJ: "prm-services"
+    OCTO_URL: "http://devoctopus/"
+  before_script:
+    - hostname
+  script:
+    - 'octo deploy-release --variable GITSHA:%CI_COMMIT_SHA% --project %OCTO_PROJ% --version 1-%CI_COMMIT_SHORT_SHA% --deployto prod --server %OCTO_URL% --apiKey %OCTO_API_KEY% --deploymenttimeout 01:00:00 --progress'
+  when: manual
+  allow_failure: false
+  only:
+    changes:
+      - server/**/*
+      - common/**/*
+      - .gitlab-ci.yml
+    refs:
+      - master
+
+client_placeholder:
+  tags: 
+  - kubernetes
+  stage: build
+  image: docker:stable-git
+  script:
+    - echo "ci placeholder for client changes until we settle on a ci config"
+  only:
+    changes:
+      - client/**/*
+
+.functions: &functions |
+  function setup_docker() {
+    if ! docker info &>/dev/null; then
+      if [ -z "$DOCKER_HOST" -a "$KUBERNETES_PORT" ]; then
+        export DOCKER_HOST='tcp://dind:2375'
+      fi
+    fi
+  }
+before_script: 
+  - *functions

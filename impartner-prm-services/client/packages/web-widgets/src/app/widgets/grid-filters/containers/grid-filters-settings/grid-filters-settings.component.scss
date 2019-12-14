@@ -1,0 +1,48 @@
+@import '~@impartner/config-utils/scss/palette';
+
+.grid-filters-settings {
+  background-color: setColor(mono);
+  width: 100%;
+  display: block;
+
+  .hide-component.show {
+    display: initial;
+  }
+
+  .hide-component {
+    display: none;
+  }
+
+  .separation-line {
+    width: 100%;
+    border: 0;
+    height: 0.1rem;
+    background-color: lighten(setColor(firm-gray, 400), 11%);
+    margin: 1rem 0 0 0;
+  }
+
+  .filter-rows-panel {
+    position: relative;
+    top: -1.5rem;
+    background-color: setColor(mono);
+    box-shadow: 0 -0.8rem 1.2rem -0.8rem setColor(firm-gray, 600);
+
+    .filter-description {
+      font-size: 1.2rem;
+      padding: 0.7rem 0 0.6rem 0.5rem;
+      color: lighten(desaturate(adjust-hue(setColor(firm-gray), -195), 12.9), 4.31);
+    }
+
+    .add-filter {
+      width: stretch;
+      margin: 0 0.7rem;
+      border: 0;
+      padding: 1.1rem 0 1rem 0;
+      font-size: 1.1rem;
+      font-weight: 600;
+      background-color: setColor(firm-gray, 200);
+      color: setColor(bondi-blue, 500);
+      flex: 1 1 100%;
+    }
+  }
+}

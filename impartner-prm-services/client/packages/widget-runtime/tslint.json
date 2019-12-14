@@ -1,0 +1,23 @@
+{
+  "defaultSeverity": "error",
+  "extends": ["tslint:recommended", "tslint-config-prettier", "tslint-eslint-rules"],
+  "jsRules": {},
+  "member-access": true,
+  "rules": {
+    "quotemark": [true, "single"],
+    "indent": [true, "spaces", 2],
+    "only-arrow-functions": false,
+    "variable-name": [true, "ban-keywords", "check-format", "allow-leading-underscore"],
+    "typedef": [true, "call-signature", "arrow-call-signature", "parameter"],
+    "object-literal-sort-keys": false,
+    "no-any": true,
+    "no-unused-expression": true,
+    "no-unused-variable": true,
+    "lines-between-class-members": ["error", "always"],
+    "newline-before-return": true,
+    "padding-line-between-statements": [
+      { "blankLine": "always", "prev": "*", "next": ["block-like", "do", "for", "function"] }
+    ]
+  },
+  "rulesDirectory": ["node_modules/tslint-lines-between-class-members"]
+}

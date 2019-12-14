@@ -1,0 +1,14 @@
+<div class="editable-tab-title" (click)="markTabAsSelected()" (dblclick)="enableEditMode()">
+  <div *ngIf="!isEditMode" class="tab" [ngClass]="{ selected: tab.id === selectedTabIndex }">
+    {{ tab.name }}
+  </div>
+  <input
+    type="text"
+    *ngIf="isEditMode"
+    class="input-edit-title"
+    [value]="tab.name"
+    (blur)="updateTabName($event)"
+    (keydown.enter)="updateTabName($event)"
+    #inputTabName
+  />
+</div>

@@ -1,0 +1,47 @@
+@import '~@impartner/config-utils/scss/palette';
+
+:host ::ng-deep {
+  $color-overlay: rgba(setColor(firm-gray, 900), 0.7);
+  $dialog-position-top: 20%;
+  @import '~ngx-smart-modal/ngx-smart-modal';
+
+  p {
+    color: setColor(firm-gray, 800);
+    font-weight: 600;
+    font-size: 0.9rem;
+    font-family: 'Open Sans', sans-serif;
+    padding: 0 6em 0 1rem;
+  }
+
+  hr {
+    box-shadow: 0 0.68em 0.93em -0.43em rgba(setColor(firm-gray, default), 0.2),
+      0 0.56em 2.87em 0.5em rgba(setColor(firm-gray, default), 0.12),
+      0 1.5em 2.37em 0.18em rgba(setColor(firm-gray, default), 0.14);
+    background-color: setColor(firm-gray, 50);
+  }
+
+  .btn-bar {
+    button {
+      float: right;
+      display: inline-block;
+      border-width: 0rem;
+      font-family: 'Open Sans', sans-serif;
+      padding: 0.5em 1.2rem;
+
+      &.btn-cancel {
+        border-radius: 0.4rem;
+        background-color: setColor(firm-gray, 400);
+      }
+
+      &.btn-positive {
+        color: setColor(firm-gray, 50);
+        border-radius: 0.25rem;
+        background-color: setColor(baron-red, default);
+      }
+
+      &:nth-child(2) {
+        margin-right: 0.3rem;
+      }
+    }
+  }
+}

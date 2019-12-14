@@ -1,0 +1,43 @@
+@import '~@impartner/config-utils/scss/palette';
+
+.field-spacer-component {
+  outline: 0.2rem solid setColor(firm-gray, 400);
+  font-size: 1.6rem;
+  min-width: 11rem;
+  display: flex;
+  transition: outline-color 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+  padding: 0.3rem 0;
+
+  &:hover {
+    outline: solid 0.2rem setColor(capable-blue, 600);
+  }
+}
+
+.bar-container-vertical {
+  height: 100%;
+  flex-basis: 5%;
+
+  &.right-vertical-bar {
+    border-right: 0.1rem solid setColor(firm-gray, 500);
+  }
+
+  &.left-vertical-bar {
+    border-left: 0.1rem solid setColor(firm-gray, 500);
+  }
+}
+
+.bar-container-horizontal {
+  height: 50%;
+  flex-basis: 25%;
+  border-bottom: 0.1rem solid setColor(firm-gray, 500);
+}
+
+.text {
+  top: 1.4rem;
+  flex-basis: 40%;
+  height: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}

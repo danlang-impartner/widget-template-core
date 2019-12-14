@@ -1,0 +1,21 @@
+<div class="tabs-settings">
+  <div class="tabs-list" [perfectScrollbar]="{ suppressScrollY: true }">
+    <w-impartner-editable-tab
+      *ngFor="let tab of tabs"
+      [tab]="tab"
+      [selectedTabIndex]="selectedTabIndex"
+      (tabSelected)="onTabSelected($event)"
+      (tabNameUpdated)="updateTabName($event, tab)"
+    ></w-impartner-editable-tab>
+  </div>
+  <div class="buttons-container">
+    <a href="#" class="add-tab-button" (click)="addTab($event)">
+      <svg-icon
+        name="add-square"
+        [applyCss]="true"
+        [svgStyle]="{ 'width.rem': 1.8, 'height.rem': 1.8 }"
+        class="icon"
+      ></svg-icon>
+    </a>
+  </div>
+</div>

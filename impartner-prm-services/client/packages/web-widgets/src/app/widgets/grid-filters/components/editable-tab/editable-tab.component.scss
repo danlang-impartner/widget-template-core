@@ -1,0 +1,42 @@
+@import '~@impartner/config-utils/scss/palette';
+
+.editable-tab-title {
+  display: inline-block;
+  user-select: none;
+
+  .tab {
+    display: inline-block;
+    min-width: 4rem;
+    font-weight: 500;
+    font-size: 1.4rem;
+    color: setColor(mono);
+    padding: 0 1rem;
+    cursor: pointer;
+    border-bottom: 0;
+    transition: border-bottom 2s ease;
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      width: 98%;
+      height: 0.5rem;
+      background: setColor(firm-gray, 500);
+      top: 100%;
+      left: 0;
+      transform-origin: center bottom;
+    }
+  }
+
+  .tab.selected {
+    &::after {
+      background: setColor(bondi-blue);
+      transition: background 0.3s ease-in-out;
+    }
+  }
+
+  .input-edit-title {
+    max-width: 6rem;
+    height: 2rem;
+  }
+}
